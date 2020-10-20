@@ -16,6 +16,7 @@ var inputQuote = document.querySelector("#poster-quote");
 var showMyPosterButton = document.querySelector(".make-poster");
 var savePosterButton = document.querySelector(".save-poster"); 
 var savedGrid = document.querySelector(".saved-posters-grid");
+var miniPoster = document.querySelector(".mini-poster");
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -126,7 +127,7 @@ savedPosterButton.addEventListener('click', goToSavedPosters);
 backToMainButton.addEventListener('click', goBackToMain);
 showMyPosterButton.addEventListener('click', showMyPoster);
 savePosterButton.addEventListener('click', savePoster); 
-
+miniPoster.addEventListener('dblclick', deleteSavedPoster);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -185,7 +186,7 @@ function createGrid() {
    savedGrid.innerHTML = ""
   for (var i = 0; i < savedPosters.length; i++) {
     savedGrid.innerHTML +=
-            `<article class="mini-poster">
+            `<article class="mini-poster" id=${savedPosters[i].id}>
               <img src="${savedPosters[i].imageURL}" alt="saved poster">
               <h2>${savedPosters[i].title}</h2>
               <h4>${savedPosters[i].quote}</h4>
@@ -193,5 +194,13 @@ function createGrid() {
              `
           }
   };
+
+function deleteSavedPoster() {
+  for (var i = 0; i < savedPosters.length; i++) {
+    if (savedPosters[i].id === ) {
+      savedPosters.splice(i);
+    };
+  };
+};
 
 getRandomPoster();
