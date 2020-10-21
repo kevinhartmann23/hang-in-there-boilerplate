@@ -119,7 +119,6 @@ var savedPosters = [];
 var currentPoster;
 
 // event listeners go here 👇
-//Window.onLoad = getRandomPoster();
 showRandomButton.addEventListener('click', getRandomPoster);
 makeOwnPosterButton.addEventListener('click', goToMakeOwnPosterForm);
 takeMeBackButton.addEventListener('click', goBackToMain);
@@ -127,7 +126,6 @@ savedPosterButton.addEventListener('click', goToSavedPosters);
 backToMainButton.addEventListener('click', goBackToMain);
 showMyPosterButton.addEventListener('click', showMyPoster);
 savePosterButton.addEventListener('click', savePoster); 
-//miniPoster.addEventListener('dblclick', deleteMiniPoster);
 
 
 // functions and event handlers go here 👇
