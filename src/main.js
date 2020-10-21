@@ -16,6 +16,7 @@ var inputQuote = document.querySelector("#poster-quote");
 var showMyPosterButton = document.querySelector(".make-poster");
 var savePosterButton = document.querySelector(".save-poster"); 
 var savedGrid = document.querySelector(".saved-posters-grid");
+var miniPosters = document.querySelector(".mini-poster")
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -140,7 +141,7 @@ function getRandomPoster() {
   mainPageImage.src = images[getRandomIndex(images)];
   mainPageTitle.innerText = titles[getRandomIndex(titles)];
   mainPageQuote.innerText = quotes[getRandomIndex(quotes)];
-  currentPoster = new Poster(mainPageImage.src, mainPageTitle.innerText, mainPageQuote.innerText)
+  currentPoster = new Poster(mainPageImage.src, mainPageTitle.innerText, mainPageQuote.innerText);
 };
 
 function goToMakeOwnPosterForm() {
@@ -158,6 +159,7 @@ function goBackToMain() {
 function goToSavedPosters() {
   savedPostersPage.classList.remove("hidden");
   mainPage.classList.add("hidden");
+  interactWithSavedPosters();
 };
 
 function createMyPoster() {
@@ -185,25 +187,29 @@ function createGrid() {
    savedGrid.innerHTML = ""
   for (var i = 0; i < savedPosters.length; i++) {
     savedGrid.innerHTML +=
-            `<section class="mini-poster" data-id="${savedPosters[i].id}">
+            `<section class="mini-poster" id="${savedPosters[i].id}">
               <img src="${savedPosters[i].imageURL}" alt="saved poster">
               <h2>${savedPosters[i].title}</h2>
               <h4>${savedPosters[i].quote}</h4>
             </section>
              `
-    };
-    var miniPoster = document.querySelectorAll("section");
-  };
+    }
+};
 
-
+function interactWithSavedPosters() {
+  miniPosters = document.querySelectorAll(".mini-poster");
+  for (var i = 0; i < miniPosters.length; i++) {
+    miniPosters[i].addEventListener("dblclick", deleteMiniPoster);
+  }
+};
 
 function deleteMiniPoster() {
+  var posterID = event.target.id || event.target.parentElement.id 
   for (var i = 0; i < savedPosters.length; i++) {
-    if (miniPoster.dataset.id === savedPosters[i].id) {
-      savedPosters.splice(i, 1);
-      return savedPosters;
-    }
+     if (savedPosters[i].id == posterID) {
+       savedPosters.splice(i, 1);
   }
+ }
 };
 
 getRandomPoster();
