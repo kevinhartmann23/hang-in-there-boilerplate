@@ -7,7 +7,7 @@ A boilerplate repo. A motivational boost.
 * Luke Mason (https://github.com/LukeMason33)
 
 ## Final Product
-* Deployed Site (file:///Users/lukemason/turing/module1/projects/hang-in-there-boilerplate/index.html)
+* Deployed Site (https://lukemason33.github.io/hang-in-there-boilerplate/)
 
 ## Technology Used
 * HTML, CSS, JavaScript
