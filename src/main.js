@@ -139,48 +139,58 @@ function getRandomPoster() {
   mainPageImage.src = images[getRandomIndex(images)];
   mainPageTitle.innerText = titles[getRandomIndex(titles)];
   mainPageQuote.innerText = quotes[getRandomIndex(quotes)];
-  currentPoster = new Poster(mainPageImage.src, mainPageTitle.innerText, mainPageQuote.innerText);
-};
+  currentPoster = new Poster(
+    mainPageImage.src,
+    mainPageTitle.innerText,
+    mainPageQuote.innerText
+  );
+}
 
 function goToMakeOwnPosterForm() {
   mainPage.classList.add("hidden");
   makeOwnPosterForm.classList.remove("hidden");
-};
+}
 
 function goBackToMain() {
   makeOwnPosterForm.classList.add("hidden");
   savedPostersPage.classList.add("hidden");
   mainPage.classList.remove("hidden");
   getRandomPoster();
-};
+}
 
 function goToSavedPosters() {
   savedPostersPage.classList.remove("hidden");
   mainPage.classList.add("hidden");
   interactWithSavedPosters();
-};
+}
 
 function createMyPoster() {
   mainPageImage.src = inputImage.value;
   mainPageTitle.innerText = inputTitle.value;
   mainPageQuote.innerText = inputQuote.value;
-  return currentPoster = new Poster(mainPageImage.src, mainPageTitle.innerText, mainPageQuote.innerText);
-};
+  return currentPoster = new Poster(
+    mainPageImage.src,
+    mainPageTitle.innerText,
+    mainPageQuote.innerText
+  );
+}
 
 function showMyPoster() {
   event.preventDefault();
   mainPage.classList.remove("hidden");
   createMyPoster();
   makeOwnPosterForm.classList.add("hidden");
-};
+}
 
 function savePoster() {
   if (!savedPosters.includes(currentPoster)) {
     savedPosters.push(currentPoster);
+  } else {
+    alert('Oops! You have already saved this poster.');
   }
-  deleteMiniPoster();
   createGrid();
-};
+  deleteMiniPoster();
+}
 
 function createGrid() {
    savedGrid.innerHTML = ""
@@ -193,14 +203,14 @@ function createGrid() {
             </section>
              `
     }
-};
+}
 
 function interactWithSavedPosters() {
   miniPosters = document.querySelectorAll(".mini-poster");
   for (var i = 0; i < miniPosters.length; i++) {
     miniPosters[i].addEventListener("dblclick", deleteMiniPoster);
   }
-};
+}
 
 function deleteMiniPoster() {
   var posterID = event.target.id || event.target.parentElement.id 
@@ -209,6 +219,7 @@ function deleteMiniPoster() {
        savedPosters.splice(i, 1);
   }
  }
-};
+ createGrid();
+}
 
 getRandomPoster();
